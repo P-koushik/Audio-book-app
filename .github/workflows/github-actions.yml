@@ -142,11 +142,10 @@ jobs:
             exit 1
           fi
 
-          # Build JSON payload safely on one line
           PAYLOAD=$(python3 -c 'import os, json; print(json.dumps({"content": os.environ.get("MESSAGE","")[:1800]}))')
 
-          # Send and show response (helps debug 403/404)
           curl -i -X POST "$DISCORD_WEBHOOK_URL" \
             -H "Content-Type: application/json" \
             -H "User-Agent: GitHubActions-DiscordWebhook" \
             --data-raw "$PAYLOAD"
+
