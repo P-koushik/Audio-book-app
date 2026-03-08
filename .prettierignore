@@ -1,0 +1,11 @@
+android/build
+android/.cxx
+ios/build
+ios/Pods
+ios/vendor
+vendor
+build
+coverage
+node_modules
+*.log
+package-lock.json

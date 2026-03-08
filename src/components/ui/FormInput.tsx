@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TextInputProps,
-  View,
-} from 'react-native';
+import { StyleSheet, Text, TextInput, TextInputProps, View } from 'react-native';
 
 import { colors } from '../../theme/colors';
 
@@ -17,11 +11,7 @@ export function FormInput({ label, ...props }: FormInputProps) {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
-      <TextInput
-        placeholderTextColor={colors.textSecondary}
-        style={styles.input}
-        {...props}
-      />
+      <TextInput placeholderTextColor={colors.textSecondary} style={styles.input} {...props} />
     </View>
   );
 }

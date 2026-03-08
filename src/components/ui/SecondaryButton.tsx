@@ -9,20 +9,12 @@ type SecondaryButtonProps = {
   style?: ViewStyle;
 };
 
-export function SecondaryButton({
-  label,
-  onPress,
-  style,
-}: SecondaryButtonProps) {
+export function SecondaryButton({ label, onPress, style }: SecondaryButtonProps) {
   return (
     <Pressable
       accessibilityRole="button"
       onPress={onPress}
-      style={({ pressed }) => [
-        styles.button,
-        pressed ? styles.buttonPressed : null,
-        style,
-      ]}
+      style={({ pressed }) => [styles.button, pressed ? styles.buttonPressed : null, style]}
     >
       <Text style={styles.icon}>G</Text>
       <Text style={styles.label}>{label}</Text>

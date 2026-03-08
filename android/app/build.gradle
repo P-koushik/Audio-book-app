@@ -79,7 +79,7 @@ android {
 
     namespace "com.audiobookmobile"
     defaultConfig {
-        applicationId "com.audiobookmobile"
+        applicationId "audiobook.mobile"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -117,3 +117,5 @@ dependencies {
         implementation jscFlavor
     }
 }
+
+apply plugin: "com.google.gms.google-services"

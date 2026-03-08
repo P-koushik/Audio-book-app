@@ -12,4 +12,3 @@ export const colors = {
   googleText: '#1F1F1F',
   tabInactive: '#8E9AC5',
 } as const;
-
