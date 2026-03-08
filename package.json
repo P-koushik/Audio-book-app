@@ -10,10 +10,16 @@
     "test": "jest"
   },
   "dependencies": {
+    "@hugeicons/core-free-icons": "^3.3.0",
+    "@hugeicons/react-native": "^1.0.11",
+    "@react-native/new-app-screen": "0.84.1",
+    "nativewind": "^4.2.2",
     "react": "19.2.3",
     "react-native": "0.84.1",
-    "@react-native/new-app-screen": "0.84.1",
-    "react-native-safe-area-context": "^5.5.2"
+    "react-native-bootsplash": "^7.1.0",
+    "react-native-reanimated": "^4.2.2",
+    "react-native-safe-area-context": "^5.7.0",
+    "react-native-worklets": "^0.7.4"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
