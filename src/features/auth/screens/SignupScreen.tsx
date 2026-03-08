@@ -7,12 +7,14 @@ import { SecondaryButton } from '../../../components/ui/SecondaryButton';
 import { colors } from '../../../theme/colors';
 
 type SignupScreenProps = {
+  errorMessage?: string;
   onSignup: (email: string, password: string) => Promise<void>;
   onGoogleLogin: () => Promise<void>;
   onGoToLogin: () => void;
 };
 
 export function SignupScreen({
+  errorMessage,
   onSignup,
   onGoogleLogin,
   onGoToLogin,
@@ -68,7 +70,7 @@ export function SignupScreen({
         value={confirmPassword}
       />
 
-      {error ? <Text style={styles.error}>{error}</Text> : null}
+      {error || errorMessage ? <Text style={styles.error}>{error || errorMessage}</Text> : null}
 
       <PrimaryButton label="Sign Up" onPress={handleSignup} />
       <SecondaryButton

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import BootSplash from 'react-native-bootsplash';
 
 import { AppNavigator } from './src/app/AppNavigator';
+import { AuthProvider } from './src/features/auth/auth-provider';
 
 export default function App() {
   useEffect(() => {
@@ -12,5 +13,9 @@ export default function App() {
     hide();
   }, []);
 
-  return <AppNavigator />;
+  return (
+    <AuthProvider>
+      <AppNavigator />
+    </AuthProvider>
+  );
 }

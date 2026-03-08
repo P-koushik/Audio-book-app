@@ -14,11 +14,7 @@ export function PrimaryButton({ label, onPress, style }: PrimaryButtonProps) {
     <Pressable
       accessibilityRole="button"
       onPress={onPress}
-      style={({ pressed }) => [
-        styles.button,
-        pressed ? styles.buttonPressed : null,
-        style,
-      ]}
+      style={({ pressed }) => [styles.button, pressed ? styles.buttonPressed : null, style]}
     >
       <Text style={styles.icon}>→</Text>
       <Text style={styles.label}>{label}</Text>

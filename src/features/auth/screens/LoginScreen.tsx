@@ -7,12 +7,14 @@ import { SecondaryButton } from '../../../components/ui/SecondaryButton';
 import { colors } from '../../../theme/colors';
 
 type LoginScreenProps = {
+  errorMessage?: string;
   onLogin: (email: string, password: string) => Promise<void>;
   onGoogleLogin: () => Promise<void>;
   onGoToSignup: () => void;
 };
 
 export function LoginScreen({
+  errorMessage,
   onLogin,
   onGoogleLogin,
   onGoToSignup,
@@ -55,7 +57,7 @@ export function LoginScreen({
         value={password}
       />
 
-      {error ? <Text style={styles.error}>{error}</Text> : null}
+      {error || errorMessage ? <Text style={styles.error}>{error || errorMessage}</Text> : null}
 
       <PrimaryButton label="Login" onPress={handleLogin} />
       <SecondaryButton

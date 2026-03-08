@@ -16,7 +16,4 @@ export type AuthScreenRoute =
 
 export type RootRoute = typeof ROUTES.AUTH | typeof ROUTES.APP;
 
-export type AppTabRoute =
-  | typeof ROUTES.PROFILE
-  | typeof ROUTES.SEARCH
-  | typeof ROUTES.ADD;
+export type AppTabRoute = typeof ROUTES.PROFILE | typeof ROUTES.SEARCH | typeof ROUTES.ADD;

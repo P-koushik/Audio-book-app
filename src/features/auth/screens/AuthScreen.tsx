@@ -8,18 +8,21 @@ import { login, loginWithGoogle, signup } from '../auth.api';
 import { LoginScreen } from './LoginScreen';
 import { SignupScreen } from './SignupScreen';
 
-type AuthScreenProps = {
-  onAuthenticated: () => void;
-};
-
-export function AuthScreen({ onAuthenticated }: AuthScreenProps) {
+export function AuthScreen() {
   const [currentRoute, setCurrentRoute] = useState<AuthScreenRoute>(ROUTES.LOGIN);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const runWithLoading = async (action: () => Promise<void>) => {
     setLoading(true);
     try {
+      setErrorMessage('');
       await action();
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : 'Authentication failed. Please try again.';
+
+      setErrorMessage(message);
     } finally {
       setLoading(false);
     }
@@ -27,28 +30,20 @@ export function AuthScreen({ onAuthenticated }: AuthScreenProps) {
 
   const handleLogin = async (email: string, password: string) => {
     await runWithLoading(async () => {
-      const result = await login({ email, password });
-      if (result.success) {
-        onAuthenticated();
-      }
+      await login({ email, password });
     });
   };
 
   const handleSignup = async (email: string, password: string) => {
     await runWithLoading(async () => {
-      const result = await signup({ email, password });
-      if (result.success) {
-        onAuthenticated();
-      }
+      await signup({ email, password });
     });
   };
 
   const handleGoogleLogin = async () => {
     await runWithLoading(async () => {
-      const result = await loginWithGoogle();
-      if (result.success) {
-        onAuthenticated();
-      }
+      await loginWithGoogle();
+      setErrorMessage('');
     });
   };
 
@@ -56,19 +51,21 @@ export function AuthScreen({ onAuthenticated }: AuthScreenProps) {
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <View style={styles.card}>
-        {currentRoute === ROUTES.LOGIN ? (
-          <LoginScreen
-            onGoToSignup={() => setCurrentRoute(ROUTES.SIGN_UP)}
-            onGoogleLogin={handleGoogleLogin}
-            onLogin={handleLogin}
-          />
-        ) : (
-          <SignupScreen
-            onGoToLogin={() => setCurrentRoute(ROUTES.LOGIN)}
-            onGoogleLogin={handleGoogleLogin}
-            onSignup={handleSignup}
-          />
-        )}
+          {currentRoute === ROUTES.LOGIN ? (
+            <LoginScreen
+              errorMessage={errorMessage}
+              onGoToSignup={() => setCurrentRoute(ROUTES.SIGN_UP)}
+              onGoogleLogin={handleGoogleLogin}
+              onLogin={handleLogin}
+            />
+          ) : (
+            <SignupScreen
+              errorMessage={errorMessage}
+              onGoToLogin={() => setCurrentRoute(ROUTES.LOGIN)}
+              onGoogleLogin={handleGoogleLogin}
+              onSignup={handleSignup}
+            />
+          )}
         </View>
 
         {loading ? (
